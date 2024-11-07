@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Logout</title>
+    <style>
+        /* Styling for login and logout container */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginContainer" class="container">
+        <h2>Login</h2>
+        <input type="text" id="username" class="input-field" placeholder="Username" required>
+        <input type="password" id="password" class="input-field" placeholder="Password" required>
+        <button onclick="login()" class="button">Login</button>
+        <p id="errorMessage" class="error-message">Invalid username or password</p>
+    </div>
+
+    <div id="logoutContainer" class="container" style="display: none;">
+        <h2>Welcome, <span id="userDisplay"></span>!</h2>
+        <button onclick="logout()" class="button">Logout</button>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (username === "admin" && password === "password123") {
+                errorMessage.style.display = "none";
+                document.getElementById("userDisplay").innerText = username;
+                document.getElementById("loginContainer").style.display = "none";
+                document.getElementById("logoutContainer").style.display = "block";
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+
+        function logout() {
+            document.getElementById("loginContainer").style.display = "block";
+            document.getElementById("logoutContainer").style.display = "none";
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+        }
+    </script>
+</body>
+</html>
